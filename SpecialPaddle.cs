@@ -6,21 +6,16 @@ public class SpecialPaddle : MonoBehaviour
 
     
     private Paddle normalPaddle;
-    //private Ball ball;
-    //private bool isPaddle;
+  
     private bool isRed = false;
-    //private SpecialPaddle specialePaddle;
+    
    
 
     // Use this for initialization
     void Start()
     {
-       // isPaddle = (this.tag == "Paddle");        
         isRed = (this.tag == "Rood");
         normalPaddle = GameObject.FindObjectOfType<Paddle>();
-        //specialePaddle = GameObject.FindObjectOfType<SpecialPaddle>();
-       // ball = GameObject.FindObjectOfType<Ball>();
-
     }
 
 
@@ -30,8 +25,6 @@ public class SpecialPaddle : MonoBehaviour
         if (isRed)
         {
             Destroy(gameObject);
-          
-            
             Vector3 paddlePos = new Vector3(0f, 500f, 0f);
 
             normalPaddle.transform.position = paddlePos;

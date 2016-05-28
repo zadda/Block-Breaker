@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour {
     {
         //  Application.LoadLevel(Application.loadedLevel +1));
         Brick.breakableCount = 0;
+        Brick.groenTeller = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
   
