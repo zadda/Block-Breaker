@@ -8,7 +8,7 @@ public class PurpleBrick : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-       
+        this.transform.position = new Vector3(Random.Range(1f, 15.5f), 9.28f, 0f);
         ball = GameObject.FindObjectOfType<PurpeBall>();
     }
 

@@ -14,6 +14,7 @@ public class SpecialPaddle : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         isRed = (this.tag == "Rood");
         normalPaddle = GameObject.FindObjectOfType<Paddle>();
     }

@@ -7,7 +7,7 @@ public class Brick : MonoBehaviour {
     public Sprite[] hitSprites; //array
     public static int breakableCount = 0;
     public static int groenTeller = 0;
-    public AudioClip crack;
+    //public AudioClip crack;
     public GameObject smoke;
     public Color Colour;    
 
@@ -47,7 +47,7 @@ public class Brick : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D col)
     {
        
-        AudioSource.PlayClipAtPoint(crack, transform.position);
+        //AudioSource.PlayClipAtPoint(crack, transform.position);
 
         if (special.isGreen && isBreakable)
         {
