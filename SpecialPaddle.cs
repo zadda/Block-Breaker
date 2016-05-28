@@ -6,6 +6,8 @@ public class SpecialPaddle : MonoBehaviour
 
     
     private Paddle normalPaddle;
+    private Ball ball; //
+    public bool specialAutoplay = false;
   
     private bool isRed = false;
     
@@ -17,6 +19,7 @@ public class SpecialPaddle : MonoBehaviour
         
         isRed = (this.tag == "Rood");
         normalPaddle = GameObject.FindObjectOfType<Paddle>();
+        ball = GameObject.FindObjectOfType<Ball>(); //
     }
 
 
@@ -35,7 +38,15 @@ public class SpecialPaddle : MonoBehaviour
 
     void Update()
     {
-        if (!isRed)
+        //if (!isRed)
+        //{
+        //    MoveMouse();
+        //}
+        if (specialAutoplay)
+        {
+            ComputerPlay();
+        }
+        else if (!isRed)
         {
             MoveMouse();
         }
@@ -50,6 +61,18 @@ public class SpecialPaddle : MonoBehaviour
         //verander positie van de paddle
 
         paddlePos.x = Mathf.Clamp(mousePosInBlocks, 0.5f, 15.5f);
+        // this is de paddle script de component zelf
+        this.transform.position = paddlePos;
+    }
+
+    void ComputerPlay()
+    {
+        Vector3 paddlePos = new Vector3(0.5f, this.transform.position.y, 0f);
+        Vector3 ballPos = ball.transform.position;
+
+        //verander positie van de paddle
+
+        paddlePos.x = Mathf.Clamp(ballPos.x, 0.5f, 15.5f);
         // this is de paddle script de component zelf
         this.transform.position = paddlePos;
     }
