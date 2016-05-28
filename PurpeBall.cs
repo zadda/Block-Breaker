@@ -6,12 +6,14 @@ public class PurpeBall : MonoBehaviour {
   
     public Rigidbody2D rigidBodyPurple2D;
     public bool isPurple;
+    private float positieZ = 5f;
 
     // Use this for initialization
     void Start ()
     {
        isPurple = false;
-        this.transform.position = new Vector3(Random.Range(0.4f, 11.2f), Random.Range(7f, 11.5f), (0f));
+        //this.transform.position = new Vector3(Random.Range(0.4f, 11.2f), Random.Range(7f, 11.5f), (0f));
+        //this.transform.position.z = positieZ;
     }
 	
 	// Update is called once per frame
@@ -19,7 +21,8 @@ public class PurpeBall : MonoBehaviour {
     {
         if (isPurple)
         {
-            
+            this.transform.position = new Vector3(Random.Range(0.4f, 11.2f), Random.Range(7f, 11.5f), (0f));
+
             this.rigidBodyPurple2D.gravityScale = 1;
             this.rigidBodyPurple2D.velocity = new Vector2(5.2f, 5.2f);
             
