@@ -51,14 +51,7 @@ public class Brick : MonoBehaviour {
 
         if (special.isGreen && isBreakable)
         {
-            //if (groenTeller > 0)
             
-            Debug.Log("groen teller: " +groenTeller);
-
-            //if (groenTeller == 2)
-            //{
-            //    special.isGreen = false;
-            //}
             if (groenTeller < 3)
             {
                 HandleHitsSpecial();
