@@ -1,12 +1,21 @@
-﻿using UnityEngine;
+﻿/* script attached to the regular ball object
+ * if game hasn't started the ball is fixed on the paddle
+ * script execution is set for order of scripts
+ * when player clicks ball is launched
+ * on collision speed is adjusted * 
+ */
+
+
+using UnityEngine;
 using System.Collections;
 
 public class Ball : MonoBehaviour {
 
-    private Paddle paddle;
+    
     public Rigidbody2D rigidBody2D; // zorgt ervoor dat er in de scripts sectie een veld vrijkomt waar het rigidbody 2D object van bal naartoe gesleept moet worden
     public Sprite[] ballSprites;
 
+    private Paddle paddle;
     private Vector3 paddleToBallVector;
     private bool hasGameStarted = false;
 
@@ -36,12 +45,8 @@ public class Ball : MonoBehaviour {
             if (Input.GetMouseButtonDown(0))
             {
                 hasGameStarted = true;
-               // Debug.log("Mouse button clicked");
-                this.rigidBody2D.velocity = new Vector2(2f, 10f);      // this == ball
+                this.rigidBody2D.velocity = new Vector2(2f, 10f);      // this == ball, lanceert ball
             }
         }      
    	}
-
- 
-
 }

@@ -1,4 +1,14 @@
-﻿using UnityEngine;
+﻿/*script attached to the grey, light red, regular red and brown brick
+ * at start counts the number of bricks to destroy
+ * when brick is hit checks if it's a regular hit
+ * or a hit with a green ball
+ * when hit by a green ball hits +2
+ * a static int, only one instance, reset in levelmanager on loadlevel 
+ * and loadnextlevel
+ */
+
+
+using UnityEngine;
 using System.Collections;
 
 public class Brick : MonoBehaviour {
@@ -6,10 +16,13 @@ public class Brick : MonoBehaviour {
 
     public Sprite[] hitSprites; //array
     public static int breakableCount = 0;
+    public GameObject smoke;
+    public Color Colour;
+
     public static int groenTeller = 0;
     //public AudioClip crack;
-    public GameObject smoke;
-    public Color Colour;    
+    
+
 
     private int timesHit;
     private LevelManager levelManager;
@@ -28,17 +41,13 @@ public class Brick : MonoBehaviour {
         levelManager = GameObject.FindObjectOfType<LevelManager>();
         special = GameObject.FindObjectOfType<Special>();
         brickBall = GameObject.FindObjectOfType<Ball>();
-
-       // groenTeller = 0;
         timesHit = 0;
-        //special.isGreen = false;
         
 
-        // bij de start worden alle objecten overlopen en opgeteld
+        // bij de start worden alle te destroyen objecten overlopen en opgeteld
         if (isBreakable)
         {
             breakableCount++;
-            //Debug.Log("breakable count " + breakableCount);
         }
        
     }
@@ -86,11 +95,10 @@ public class Brick : MonoBehaviour {
             GameObject smokePuff = Instantiate(smoke, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
             // kleur wordt in de inspector gezet via Colour -> Alpha op 255  zetten!!
             smokePuff.GetComponent<ParticleSystem>().startColor = new Vector4 (this.GetComponent<Brick>().Colour.r, this.GetComponent<Brick>().Colour.g, this.GetComponent<Brick>().Colour.b, this.GetComponent<Brick>().Colour.a);
-            Debug.Log(Colour);
+           
             
             Destroy(gameObject);
             levelManager.BrickDestroyed();
-            //smoke.GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
         }
         else
         {
@@ -103,9 +111,6 @@ public class Brick : MonoBehaviour {
 
         groenTeller++;
         timesHit +=2;
-
-       
-
         //int maxHits; // public om te kunnen aanpassen in editor
 
         int maxHits = hitSprites.Length + 1;
@@ -115,7 +120,6 @@ public class Brick : MonoBehaviour {
             breakableCount--;
             Destroy(gameObject);
             levelManager.BrickDestroyed();
-         
         }
         else
         {
@@ -123,20 +127,15 @@ public class Brick : MonoBehaviour {
         }
     }
 
-    // TODO remove this method once we acutally win
-    void SimulateWin()
-    {
-        levelManager.LoadNextLevel();
-    }
 
     void LoadSprites()
     {
         int spriteIndex = timesHit - 1;
 
-
+        // in case we don't have a 2nd and 3d sprite set
         if (hitSprites[spriteIndex] != null)
         {
-            this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+            this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex]; // change the brick so that it shows that it's been hit
         }
         else
         {

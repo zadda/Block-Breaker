@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/*script is attached to the regular paddle
+ * code is the same as in SpecialPaddle.cs
+ */
+
+
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -27,8 +32,6 @@ public class Paddle : MonoBehaviour {
             computerPlay();
         }
 	}
-
-   
 
     void MoveWithMouse()
     {

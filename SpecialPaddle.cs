@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿/* script attached to the small paddle and red brick
+ * when the red brick is hit normal paddle is moved out of view
+ * small paddle in view and controlable by player
+ * no time or hit limit, special paddle remains until end of level for now
+ */
+
+using UnityEngine;
 using System.Collections;
+
 
 public class SpecialPaddle : MonoBehaviour
 {
+    public bool specialAutoplay = false;
 
-    
     private Paddle normalPaddle;
     private Ball ball; //
-    public bool specialAutoplay = false;
-  
     private bool isRed = false;
     
    
@@ -21,8 +26,6 @@ public class SpecialPaddle : MonoBehaviour
         normalPaddle = GameObject.FindObjectOfType<Paddle>();
         ball = GameObject.FindObjectOfType<Ball>(); //
     }
-
-
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -38,11 +41,7 @@ public class SpecialPaddle : MonoBehaviour
 
     void Update()
     {
-        //if (!isRed)
-        //{
-        //    MoveMouse();
-        //}
-        if (specialAutoplay)
+        if (specialAutoplay) // checks boolean set on the object in inspector (Unity)
         {
             ComputerPlay();
         }
@@ -52,6 +51,7 @@ public class SpecialPaddle : MonoBehaviour
         }
     }
 
+    //player is in control
     void MoveMouse()
     {
 
